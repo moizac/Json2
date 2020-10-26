@@ -1,0 +1,22 @@
+<?php
+ 
+ $data = file_get_contents("mahasiswa.json");
+ $mahasiswa = json_decode($data);
+ 
+ echo "mahasiswa <br>";
+ 
+ echo "NIM : " . $mahasiswa->Mahasiswa->NIM . "<br />";
+ echo "Nama : " . $mahasiswa->Mahasiswa->Nama . "<br/>";
+ echo "Angkatan : " . $mahasiswa->Mahasiswa->Angkatan . "<br/>";
+ echo "Kelas : " . $mahasiswa->Mahasiswa->Kelas . "<br/>";
+ echo "Matakuliah : ";
+ 
+ foreach ($mahasiswa['Mahasiswa'] as $mhs) {
+     foreach ($mahasiswa['Matakuliah'] as $matakuliah) {
+         $output .= "kode : " . $mhs[$matakuliah['kode']] . "<br />";
+         $output .= "nama : " . $mhs[$matakuliah['nama']] . "<br />";
+         $output .= "sks : " . $mhs[$matakuliah['sks']] . "<br />";
+         $output .= "<br />";
+     }
+ }
+ echo $output;
